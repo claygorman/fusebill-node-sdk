@@ -1,10 +1,10 @@
 {
-  "name": "fusebill-js",
+  "name": "fusebill-node",
   "version": "1.0.1",
-  "main": "dist/fusebill-js.cjs.js",
-  "module": "dist/fusebill-js.esm.js",
-  "browser": "dist/fusebill-js.umd.js",
-  "typscript": "dist/fusebill-js.d.ts",
+  "main": "dist/fusebill-node.cjs.js",
+  "module": "dist/fusebill-node.esm.js",
+  "browser": "dist/fusebill-node.umd.js",
+  "typscript": "dist/fusebill-node.d.ts",
   "dependencies": {
     "axios": "^0.21.1",
     "bottleneck": "^2.19.5",
@@ -36,5 +36,5 @@
   "files": [
     "dist"
   ],
-  "types": "dist/fusebill-js.d.ts"
+  "types": "dist/fusebill-node.d.ts"
 }

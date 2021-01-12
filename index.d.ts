@@ -1,5 +1,4 @@
-// Type definitions for fusebill 1.0.0
-// Project: https://github.com/claygorman/fusebill-js-sdk
+// Project: https://github.com/claygorman/fusebill-node-sdk
 
 import { Catalog } from './src/typescript/catalog'
 import { AxiosPromise } from 'axios'
@@ -37,6 +36,7 @@ declare class Client {
     data?: any
     qs?: any
   }): AxiosPromise
+  setAuth(options: { apiKey?: string })
   catalog: Catalog
 }
 

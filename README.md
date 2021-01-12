@@ -1,4 +1,4 @@
-# fusebill-js-sdk
+# fusebill-node-sdk
 
 Javascript / node.js wrapper for the [Fusebill API](https://developer.fusebill.com/reference#overview)
 
@@ -6,13 +6,13 @@ Javascript / node.js wrapper for the [Fusebill API](https://developer.fusebill.c
 ## Installing
 
 ```shell
-npm install fusebill-js
+npm install fusebill-node
 ```
 
 ## Instantiate client
 
 ```javascript
-const Fusebill = require('fusebill-js')
+const Fusebill = require('fusebill-node')
 const fusebill = new Fusebill({
   apiKey: 'abc',
   checkLimit: false // (Optional) Specify whether to check the API limit on each call. Default: true
