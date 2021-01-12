@@ -31,7 +31,7 @@ export default [
       file: pkg.typscript,
       format: 'es',
     },
-    plugins: [dts()],
+    plugins: [resolve(), dts()],
   },
 
   // CommonJS (for Node) and ES module (for bundlers) build.

@@ -29,7 +29,7 @@ export interface ApiOptions extends BaseOptions, LimiterOptions {
   apiKey: string
 }
 
-declare class Fusebill {
+declare class Client {
   constructor(options?: ApiOptions)
   apiRequest(options: {
     method?: string
@@ -40,4 +40,4 @@ declare class Fusebill {
   catalog: Catalog
 }
 
-export default Fusebill
+export { Client }

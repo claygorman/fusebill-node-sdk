@@ -1,3 +1,3 @@
-import client from './src/client'
+import Client from './src/client'
 
-export { client }
+export { Client }
