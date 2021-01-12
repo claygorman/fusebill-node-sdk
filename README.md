@@ -130,3 +130,5 @@ fusebill.apiRequest({
 })
 ```
 
+## Credits
+Built and maintained by [Clay Gorman](https://www.linkedin.com/in/claygorman/)

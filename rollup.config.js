@@ -9,21 +9,6 @@ import dts from 'rollup-plugin-dts'
 import pkg from './package.json'
 
 export default [
-  // TODO: browser-friendly UMD build
-  // {
-  //   input: 'index.js',
-  //   output: {
-  //     name: 'Fusebill',
-  //     file: pkg.browser,
-  //     format: 'umd',
-  //   },
-  //   plugins: [
-  //     resolve(), // so Rollup can find `ms`
-  //     commonjs(), // so Rollup can convert `ms` to an ES module
-  //     pluginJson(),
-  //   ],
-  // },
-
   // Lets export the typescript variant too
   {
     input: 'index.d.ts',

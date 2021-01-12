@@ -1,6 +1,9 @@
 {
-  "name": "fusebill-node",
-  "version": "1.0.1",
+  "name": "@fusebridge/fusebill-node",
+  "version": "0.0.1",
+  "maintainers": [
+    "Clay Gorman <claygorman@gmail.com> (https://claygorman.com/)"
+  ],
   "main": "dist/fusebill-node.cjs.js",
   "module": "dist/fusebill-node.esm.js",
   "browser": "dist/fusebill-node.umd.js",
