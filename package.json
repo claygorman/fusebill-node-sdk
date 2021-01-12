@@ -1,7 +1,7 @@
 {
   "name": "fusebill-js",
   "version": "1.0.0",
-  "main": "dist/fusebill-js.js",
+  "main": "dist/fusebill-js.cjs.js",
   "module": "dist/fusebill-js.esm.js",
   "browser": "dist/fusebill-js.umd.js",
   "typscript": "dist/fusebill-js.d.ts",
@@ -12,6 +12,9 @@
     "lodash": "^4.17.20"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-typescript": "^7.12.7",
+    "@rollup/plugin-babel": "^5.2.2",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^11.0.1",
@@ -19,13 +22,16 @@
     "rollup": "^2.36.1",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-dts": "^2.0.1",
-    "rollup-plugin-local-resolve": "^1.0.7"
+    "rollup-plugin-local-resolve": "^1.0.7",
+    "typescript": "^4.1.3"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "rm -rf dist && rollup -c",
     "dev": "rollup -c -w",
     "test": "node test/test.js",
-    "pretest": "npm run build"
+    "pretest": "npm run build",
+    "prepublish:public": "npm run build && npm run bump-version",
+    "publish:public": "npm publish --access public"
   },
   "files": [
     "dist"

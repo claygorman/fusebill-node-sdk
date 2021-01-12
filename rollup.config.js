@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import pluginJson from '@rollup/plugin-json'
 import localResolve from 'rollup-plugin-local-resolve'
 import autoExternal from 'rollup-plugin-auto-external'
+import { babel } from '@rollup/plugin-babel'
 import dts from 'rollup-plugin-dts'
 
 import pkg from './package.json'
@@ -47,6 +48,7 @@ export default [
       commonjs(),
       resolve(),
       autoExternal(),
+      babel({ babelHelpers: 'bundled', exclude: 'node_modules/**' }),
     ],
     output: [
       { file: pkg.main, format: 'cjs' },
