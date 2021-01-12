@@ -71,7 +71,7 @@ and will fail requests if the total is too close to the max. By default
 
 ## Available Methods
 
-### Catalog
+### Index
 
 ```javascript
 // plans
@@ -111,19 +111,22 @@ It is possible to access the fusebill request method directly,
 it could be handy if wrapper doesn't have implementation for some endpoint yet.
 Using of exposed request method benefits by the bottleneck throttling, auth and request parsing and formatting already in place
 
+Note: This library uses [Axios](https://www.npmjs.com/package/axios#axios-api) for http calls.
+
 ```javascript
 fusebill.apiRequest({
   method: 'PUT',
   path: '/some/api/not/wrapped/yet',
-  body: { key: 'value' },
+  data: { key: 'value' }
 })
 ```
 
 ```javascript
+ // qs is not part of axios and we use this for custom transformations on query
 fusebill.apiRequest({
   method: 'GET',
   path: '/some/api/not/wrapped/yet',
-  qs: { query: {someKey: 'someValue'}, pageSize: 100 },
+  qs: { query: { someKey: 'someValue'}, pageSize: 100}
 })
 ```
 

@@ -1,10 +1,11 @@
 import axios from 'axios'
 import _ from 'lodash'
 import Bottleneck from 'bottleneck'
-const EventEmitter = require('events').EventEmitter
-const debug = require('debug')('fusebill:client')
+import { EventEmitter } from 'events'
 
 import Catalog from './catalog'
+
+const debug = require('debug')('fusebill:client')
 
 // define how long to wait API response before throwing a timeout error
 const API_TIMEOUT = 15000
@@ -48,13 +49,16 @@ const prepareParams = (opts, self) => {
   return params
 }
 
-class Client extends EventEmitter {
+export class Client extends EventEmitter {
   constructor(options = {}) {
     super()
     this.qs = {}
     this.auth = undefined
     this.setAuth(options)
-    // this.setOAuth(options)
+    this.maxUsePercent =
+      typeof options.maxUsePercent !== 'undefined'
+        ? options.maxUsePercent
+        : MAX_USE_PERCENT_DEFAULT
     this.baseURL = options.baseURL || 'https://secure.fusebill.com/v1'
     this.apiTimeout = options.timeout || API_TIMEOUT
     this.apiCalls = 0
@@ -143,5 +147,4 @@ class Client extends EventEmitter {
   }
 }
 
-module.exports = Client
-module.exports.default = Client
+export default Client
