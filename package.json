@@ -1,6 +1,6 @@
 {
   "name": "fusebill-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/fusebill-js.cjs.js",
   "module": "dist/fusebill-js.esm.js",
   "browser": "dist/fusebill-js.umd.js",
