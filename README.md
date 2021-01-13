@@ -71,7 +71,7 @@ and will fail requests if the total is too close to the max. By default
 
 ## Available Methods
 
-### Index
+### Catalog
 
 ```javascript
 // plans
@@ -103,6 +103,92 @@ fusebill.catalog.discounts.read(discountId, opts)
 fusebill.catalog.customFields.updateOnSubscription(data)
 fusebill.catalog.customFields.updateOnSubscriptionProduct(data)
 fusebill.catalog.customFields.updateOnPurchase(data)
+```
+
+### Customers
+
+```javascript
+// customer
+fusebill.customers.customer.list(opts)
+fusebill.customers.customer.readOverview(customerId, opts)
+fusebill.customers.customer.read(customerId, opts)
+fusebill.customers.customer.create(data)
+fusebill.customers.customer.activate(data, opts)
+fusebill.customers.customer.activateSubscriptionsAndPurchases(customerId, data, opts)
+fusebill.customers.customer.hold(customerId, opts)
+fusebill.customers.customer.unHold(data, opts)
+fusebill.customers.customer.cancel(data, opts)
+fusebill.customers.customer.unCancel(customerId, opts)
+fusebill.customers.customer.update(data, opts)
+fusebill.customers.customer.createNote(data, opts)
+fusebill.customers.customer.deleteNote(noteId, opts)
+
+// email
+fusebill.customers.email.read(customerId, opts)
+fusebill.customers.email.update(data, opts)
+
+// billing
+fusebill.customers.billing.read(customerId, opts)
+fusebill.customers.billing.update(data, opts)
+
+// address
+fusebill.customers.address.read(customerId, opts)
+fusebill.customers.address.update(data, opts)
+
+// shippingBillingAddress
+fusebill.customers.shippingBillingAddress.read(addressId, opts)
+fusebill.customers.shippingBillingAddress.create(data, opts)
+fusebill.customers.shippingBillingAddress.update(data, opts)
+fusebill.customers.shippingBillingAddress.readCountries(opts)
+```
+
+### Subscriptions
+
+```javascript
+// subscription
+fusebill.subscriptions.subscription.list(opts)
+fusebill.subscriptions.subscription.listSummary(opts)
+fusebill.subscriptions.subscription.listByCustomer(customerId, opts)
+fusebill.subscriptions.subscription.read(subscriptionId, opts)
+fusebill.subscriptions.subscription.create(data, opts)
+fusebill.subscriptions.subscription.update(data)
+fusebill.subscriptions.subscription.activate(subscriptionId, data, opts)
+fusebill.subscriptions.subscription.activateMultiple(data, opts)
+fusebill.subscriptions.subscription.provision(subscriptionId, opts)
+fusebill.subscriptions.subscription.cancel(data, opts)
+fusebill.subscriptions.subscription.delete(subscriptionId, opts)
+fusebill.subscriptions.subscription.countByStatus(customerId, status, opts)
+
+// products
+fusebill.subscriptions.products.read(subscriptionProductId, opts)
+fusebill.subscriptions.products.update(data, opts)
+fusebill.subscriptions.products.updateQuantity(data, opts)
+
+// productPrice
+fusebill.subscriptions.productPrice.create(data, opts)
+fusebill.subscriptions.productPrice.update(data, opts)
+fusebill.subscriptions.productPrice.delete(subscriptionProductId, opts)
+
+// billingPeriodDefinitions
+fusebill.subscriptions.billingPeriodDefinitions.listByCustomer(customerId, opts)
+fusebill.subscriptions.billingPeriodDefinitions.readBySubscriptionId(subscriptionId, opts)
+fusebill.subscriptions.billingPeriodDefinitions.read(billingPeriodDefinitionId, opts)
+fusebill.subscriptions.billingPeriodDefinitions.create(data, opts)
+fusebill.subscriptions.billingPeriodDefinitions.preview(data, opts)
+fusebill.subscriptions.billingPeriodDefinitions.update(data, opts)
+fusebill.subscriptions.billingPeriodDefinitions.delete(billingPeriodDefinitionId, opts)
+
+// coupons
+fusebill.subscriptions.coupons.list(opts)
+fusebill.subscriptions.coupons.read(couponId, opts)
+fusebill.subscriptions.coupons.validate(data, opts)
+fusebill.subscriptions.coupons.apply(data, opts)
+fusebill.subscriptions.coupons.delete(subscriptionId, couponCode, deleteAllDiscounts, opts)
+
+// migrations
+fusebill.subscriptions.migrations.read(subscriptionId, opts)
+fusebill.subscriptions.migrations.create(subscriptionId, data, opts)
+fusebill.subscriptions.migrations.cancel(subscriptionId, opts)
 ```
 
 ## Not wrapped endpoint(s)

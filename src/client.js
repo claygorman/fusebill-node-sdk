@@ -4,6 +4,8 @@ import Bottleneck from 'bottleneck'
 import { EventEmitter } from 'events'
 
 import Catalog from './catalog'
+import Customers from './customers'
+import Subscriptions from './subscriptions'
 
 const debug = require('debug')('fusebill:client')
 
@@ -24,6 +26,8 @@ const getLimiter = (options) =>
 
 const setInstances = (client) => {
   client.catalog = new Catalog(client)
+  client.customers = new Customers(client)
+  client.subscriptions = new Subscriptions(client)
 }
 
 const prepareParams = (opts, self) => {
