@@ -6,6 +6,8 @@ import { EventEmitter } from 'events'
 import Catalog from './catalog'
 import Customers from './customers'
 import Subscriptions from './subscriptions'
+import Purchases from './purchases'
+import Payments from './payments'
 
 const debug = require('debug')('fusebill:client')
 
@@ -28,6 +30,8 @@ const setInstances = (client) => {
   client.catalog = new Catalog(client)
   client.customers = new Customers(client)
   client.subscriptions = new Subscriptions(client)
+  client.purchases = new Purchases(client)
+  client.payments = new Payments(client)
 }
 
 const prepareParams = (opts, self) => {

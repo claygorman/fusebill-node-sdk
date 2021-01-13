@@ -191,6 +191,94 @@ fusebill.subscriptions.migrations.create(subscriptionId, data, opts)
 fusebill.subscriptions.migrations.cancel(subscriptionId, opts)
 ```
 
+### Purchases
+
+```javascript
+// purchase
+fusebill.purchases.purchase.listByProduct(productId, opts)
+fusebill.purchases.purchase.listByCustomer(customerId, opts)
+fusebill.purchases.purchase.read(purchaseId, opts)
+fusebill.purchases.purchase.createBulk(data, opts)
+fusebill.purchases.purchase.create(data, opts)
+fusebill.purchases.purchase.finalize(data, opts)
+fusebill.purchases.purchase.split(data, opts)
+fusebill.purchases.purchase.update(data)
+fusebill.purchases.purchase.applyCoupon(data)
+fusebill.purchases.purchase.deleteCoupon(purchaseId, couponCode, deleteAllDiscounts, opts)
+fusebill.purchases.purchase.cancel(data, opts)
+fusebill.purchases.purchase.deleteDraft(purchaseId, opts)
+
+// discount
+fusebill.purchases.discount.read(purchaseDiscountId, opts)
+fusebill.purchases.discount.create(data, opts)
+fusebill.purchases.discount.update(data, opts)
+fusebill.purchases.discount.delete(purchaseDiscountId, opts)
+```
+
+### Payments
+
+```javascript
+// payment
+fusebill.payments.payment.read(paymentId, opts)
+fusebill.payments.payment.create(data, opts)
+
+// activity
+fusebill.payments.activity.listByCustomer(customerId, opts)
+fusebill.payments.activity.list(opts)
+fusebill.payments.activity.listChildActivityByCustomer(customerId, opts)
+fusebill.payments.activity.read(paymentActivityId, opts)
+fusebill.payments.activity.autoResolve(data, opts)
+fusebill.payments.activity.manualResolve(data, opts)
+
+// refund
+fusebill.payments.refund.read(transactionId, opts)
+fusebill.payments.refund.create(data, opts)
+
+// method
+fusebill.payments.method.listByCustomer(customerId, opts)
+fusebill.payments.method.setCustomerDefault(paymentMethodId, customerId, opts)
+
+// method.creditCard
+fusebill.payments.method.creditCard.listByCustomer(customerId, opts)
+fusebill.payments.method.creditCard.read(paymentMethodId, opts)
+fusebill.payments.method.creditCard.create(data, opts)
+fusebill.payments.method.creditCard.update(data, opts)
+fusebill.payments.method.creditCard.delete(paymentMethodId, opts)
+
+// method.ach
+fusebill.payments.method.ach.listByCustomer(customerId, opts)
+fusebill.payments.method.ach.read(paymentMethodId, opts)
+fusebill.payments.method.ach.create(data, opts)
+fusebill.payments.method.ach.update(data, opts)
+fusebill.payments.method.ach.delete(paymentMethodId, opts)
+
+// transactions
+fusebill.payments.transaction.list(opts)
+fusebill.payments.transaction.listByCustomer(customerId, opts)
+
+// credit
+fusebill.payments.credit.read(transactionId, opts)
+fusebill.payments.credit.create(data, opts)
+
+// debit
+fusebill.payments.debit.read(transactionId, opts)
+fusebill.payments.debit.create(data, opts)
+
+// stripe
+fusebill.payments.stripe.achTokenImport(data, opts)
+fusebill.payments.stripe.creditCardTokenImport(data, opts)
+fusebill.payments.stripe.connectAchTokenImport(data, opts)
+fusebill.payments.stripe.connectCreditCardTokenImport(data, opts)
+
+// paypal
+fusebill.payments.paypal.create(data, opts)
+fusebill.payments.paypal.delete(paymentMethodId, opts)
+
+// braintree
+fusebill.payments.braintree.cardTokenImport(data, opts)
+```
+
+
 ## Not wrapped endpoint(s)
 
 It is possible to access the fusebill request method directly,

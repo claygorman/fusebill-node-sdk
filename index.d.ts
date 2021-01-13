@@ -1,6 +1,10 @@
 // Project: https://github.com/claygorman/fusebill-node-sdk
 
 import { Catalog } from './src/typescript/catalog'
+import { Customers } from './src/typescript/customers'
+import { Subscriptions } from './src/typescript/subscriptions'
+import { Purchases } from './src/typescript/purchases'
+import { Payments } from './src/typescript/payments'
 import { AxiosPromise } from 'axios'
 
 interface BaseOptions {
@@ -38,6 +42,10 @@ declare class Client {
   }): AxiosPromise
   setAuth(options: { apiKey?: string })
   catalog: Catalog
+  customers: Customers
+  subscriptions: Subscriptions
+  purchases: Purchases
+  payments: Payments
 }
 
 export { Client }
