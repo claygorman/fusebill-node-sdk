@@ -36,24 +36,30 @@ const setInstances = (client) => {
 
 const prepareParams = (opts, self) => {
   const params = _.cloneDeep(opts)
-  params.headers = Object.assign({}, params.headers)
+  params.headers = { ...params.headers }
   if (self.apiKey) {
     params.headers.Authorization = `Basic ${self.apiKey}`
   }
   params.baseURL = self.baseURL
   params.method = params.method || 'GET'
-  params.qs = Object.assign({}, params.qs)
-  params.params = Object.assign({}, params.qs)
+  params.qs = { ...params.qs }
+  params.params = { ...params.qs }
 
+  // https://developer.fusebill.com/reference#string-filtering
   if (params.params.query) {
-    params.params.query = Object.keys(params.params.query)
-      .map((x) => `${x}:${params.params.query[x]}`)
-      .join(';')
+    const fusebillQueryFormat =
+      Object.keys(params.params.query)
+        .filter((x) => typeof params.params.query[x] !== 'undefined')
+        .map((x) => `${x}:${params.params.query[x]}`)
+        .join(';') || undefined
+    delete params.params.query
+    if (fusebillQueryFormat) params.params.query = fusebillQueryFormat
   }
 
   if (params.qs) delete params.qs
 
   params.timeout = self.apiTimeout
+  console.log(params)
   return params
 }
 
@@ -137,22 +143,23 @@ export class Client extends EventEmitter {
     })
   }
 
-  getApiLimit() {
-    this.limit = this.limit || {}
-    const collectedAt = this.limit.collectedAt || 0
-    const recencyMinutes = (Date.now() - collectedAt) / (60 * 1000)
-    debug('recencyMinutes', recencyMinutes)
-    if (recencyMinutes < 5) {
-      return Promise.resolve(this.limit)
-    }
-    return this.apiRequest({
-      method: 'GET',
-      path: '/integrations/v1/limit/daily',
-    }).then((results) => {
-      this.limit = results.filter((r) => r.name === 'api-calls-daily')[0]
-      return this.limit
-    })
-  }
+  // TODO: Implement this
+  // getApiLimit() {
+  //   this.limit = this.limit || {}
+  //   const collectedAt = this.limit.collectedAt || 0
+  //   const recencyMinutes = (Date.now() - collectedAt) / (60 * 1000)
+  //   debug('recencyMinutes', recencyMinutes)
+  //   if (recencyMinutes < 5) {
+  //     return Promise.resolve(this.limit)
+  //   }
+  //   return this.apiRequest({
+  //     method: 'GET',
+  //     path: '/integrations/v1/limit/daily',
+  //   }).then((results) => {
+  //     this.limit = results.filter((r) => r.name === 'api-calls-daily')[0]
+  //     return this.limit
+  //   })
+  // }
 }
 
 export default Client
