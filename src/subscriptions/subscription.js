@@ -53,11 +53,10 @@ export default class Subscription {
     })
   }
 
-  activate(subscriptionId, data, options) {
+  activate(subscriptionId, options) {
     return this.client.apiRequest({
       method: 'POST',
       url: `/SubscriptionActivation/${subscriptionId}`,
-      data,
       qs: options,
     })
   }

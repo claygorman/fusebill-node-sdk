@@ -13,11 +13,7 @@ declare class Subscription {
 
   update(data: object, options?: {}): AxiosPromise
 
-  activate(
-    subscriptionId: string | number,
-    data: object,
-    options?: {}
-  ): AxiosPromise
+  activate(subscriptionId: string | number, options?: {}): AxiosPromise
 
   activateMultiple(data: object, options?: {}): AxiosPromise
 
