@@ -1,4 +1,5 @@
 import axios from 'axios'
+import axiosRetry from 'axios-retry'
 import _ from 'lodash'
 import Bottleneck from 'bottleneck'
 import { EventEmitter } from 'events'
@@ -8,23 +9,23 @@ import Customers from './customers'
 import Subscriptions from './subscriptions'
 import Purchases from './purchases'
 import Payments from './payments'
+import Invoices from './invoices'
 
 const debug = require('debug')('fusebill:client')
 
 // define how long to wait API response before throwing a timeout error
 const API_TIMEOUT = 15000
 const MAX_USE_PERCENT_DEFAULT = 90
+const DEFAULT_RETRIES = 3
+
+axiosRetry(axios, { retries: DEFAULT_RETRIES })
 
 const getLimiter = (options) =>
-  new Bottleneck(
-    Object.assign(
-      {
-        maxConcurrent: 2,
-        minTime: 1000 / 9,
-      },
-      options.limiter
-    )
-  )
+  new Bottleneck({
+    maxConcurrent: 2,
+    minTime: 1000 / 9,
+    ...options.limiter,
+  })
 
 const setInstances = (client) => {
   client.catalog = new Catalog(client)
@@ -32,6 +33,7 @@ const setInstances = (client) => {
   client.subscriptions = new Subscriptions(client)
   client.purchases = new Purchases(client)
   client.payments = new Payments(client)
+  client.invoices = new Invoices(client)
 }
 
 const prepareParams = (opts, self) => {
@@ -59,7 +61,13 @@ const prepareParams = (opts, self) => {
   if (params.qs) delete params.qs
 
   params.timeout = self.apiTimeout
-  console.log(params)
+
+  params['axios-retry'] = {
+    retries: params.retries || self.defaultRetries,
+  }
+
+  if (params.retries) delete params.retries
+
   return params
 }
 
@@ -69,13 +77,11 @@ export class Client extends EventEmitter {
     this.qs = {}
     this.auth = undefined
     this.setAuth(options)
-    this.maxUsePercent =
-      typeof options.maxUsePercent !== 'undefined'
-        ? options.maxUsePercent
-        : MAX_USE_PERCENT_DEFAULT
+    this.maxUsePercent = options.maxUsePercent || MAX_USE_PERCENT_DEFAULT
     this.baseURL = options.baseURL || 'https://secure.fusebill.com/v1'
     this.apiTimeout = options.timeout || API_TIMEOUT
     this.apiCalls = 0
+    this.defaultRetries = options.retries || DEFAULT_RETRIES
     this.on('apiCall', (params) => {
       debug('apiCall', _.pick(params, ['method', 'url']))
       this.apiCalls += 1

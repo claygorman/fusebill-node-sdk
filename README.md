@@ -278,6 +278,21 @@ fusebill.payments.paypal.delete(paymentMethodId, opts)
 fusebill.payments.braintree.cardTokenImport(data, opts)
 ```
 
+### Invoices
+
+```javascript
+// invoice
+fusebill.invoices.invoice.list(opts)
+fusebill.invoices.invoice.listSummary(opts)
+fusebill.invoices.invoice.listByCustomer(customerId, showZeroDollarCharges, opts)
+fusebill.invoices.invoice.read(invoiceId, showTrackedItems, groupCharges, opts)
+fusebill.invoices.invoice.readAsHtml(invoiceId, showTrackedItems, opts)
+fusebill.invoices.invoice.readAsPdf(invoiceId, showTrackedItems, opts)
+fusebill.invoices.invoice.listCreditAllocations(invoiceId, opts)
+fusebill.invoices.invoice.listPaymentAllocations(invoiceId, opts)
+fusebill.invoices.invoice.writeOff(data, opts)
+```
+
 
 ## Not wrapped endpoint(s)
 

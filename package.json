@@ -10,6 +10,7 @@
   "typscript": "dist/fusebill-node.d.ts",
   "dependencies": {
     "axios": "^0.21.1",
+    "axios-retry": "^3.1.9",
     "bottleneck": "^2.19.5",
     "debug": "^4.3.1",
     "lodash": "^4.17.20"
