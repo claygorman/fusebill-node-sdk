@@ -5,6 +5,7 @@ import { Customers } from './src/typescript/customers'
 import { Subscriptions } from './src/typescript/subscriptions'
 import { Purchases } from './src/typescript/purchases'
 import { Payments } from './src/typescript/payments'
+import { Invoices } from './src/typescript/invoices'
 import { AxiosPromise } from 'axios'
 
 interface BaseOptions {
@@ -46,6 +47,7 @@ declare class Client {
   subscriptions: Subscriptions
   purchases: Purchases
   payments: Payments
+  invoices: Invoices
 }
 
 export { Client }
