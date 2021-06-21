@@ -6,14 +6,15 @@ Javascript / node.js wrapper for the [Fusebill API](https://developer.fusebill.c
 ## Installing
 
 ```shell
-npm install fusebill-node
+npm install @fusebridge/fusebill-node
 ```
 
 ## Instantiate client
 
 ```javascript
-const Fusebill = require('fusebill-node')
-const fusebill = new Fusebill({
+import { Client as Fusebill } from '@fusebridge/fusebill-node'
+
+export const fusebillClient = new Fusebill({
   apiKey: 'abc',
   checkLimit: false // (Optional) Specify whether to check the API limit on each call. Default: true
 })
@@ -22,7 +23,7 @@ const fusebill = new Fusebill({
 To change the base url:
 
 ```javascript
-const fusebill = new Fusebill({ apiKey: YOUR_API_KEY, baseURL: 'https://some-url' })
+export const fusebillClient = new Fusebill({ apiKey: YOUR_API_KEY, baseURL: 'https://some-url' })
 ```
 
 ### Changing rate limiter options
@@ -30,7 +31,7 @@ const fusebill = new Fusebill({ apiKey: YOUR_API_KEY, baseURL: 'https://some-url
 [Bottleneck](https://github.com/SGrondin/bottleneck) is used for rate limiting. To override the default settings, pass a `limiter` object when instantiating the client. Bottleneck options can be found [here](https://github.com/SGrondin/bottleneck#constructor).
 
 ```javascript
-const fusebill = new Fusebill({
+export const fusebillClient = new Fusebill({
   apiKey: YOUR_API_KEY,
   limiter: {
     maxConcurrent: 2,

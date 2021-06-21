@@ -97,7 +97,7 @@ export default class Subscription {
 
   countByStatus(customerId, status, options) {
     return this.client.apiRequest({
-      method: 'DELETE',
+      method: 'GET',
       url: `/customers/${customerId}/subscriptions/GetCountByStatus?status=${status}`,
       qs: options,
     })
